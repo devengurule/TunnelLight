@@ -1,21 +1,47 @@
+using System;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Headbob : MonoBehaviour
 {
-
-    public Camera cam;
+    public float Amplitude;
+    public float Frequency;
+    public float RunFrequency;
+    public float Smooth;
+    private float CurrentFrequency;
+    private Vector3 pos;
     private Vector3 startPos;
-    private float x;
+    private Vector3 startPosTest;
 
     void Start()
     {
-        startPos = transform.position;
+        startPos = transform.localPosition;
     }
 
     void Update()
     {
-        cam.transform.position = startPos;
+        if (Input.GetKey(KeyCode.LeftShift)) CurrentFrequency = RunFrequency;
+        else CurrentFrequency = Frequency;
 
-        startPos.y = Mathf.Sin(1);
+        if (Input.GetButton("Horizontal") || Input.GetButton("Vertical")) HeadBob();
+        else StopHeadBob();
+    }
+
+    private void HeadBob()
+    {
+        startPosTest = transform.localPosition;
+
+        pos = transform.position;
+
+        pos.y += Mathf.Lerp(0, Mathf.Sin(Time.time * CurrentFrequency) * Amplitude, Smooth * Time.deltaTime);
+        pos.x += Mathf.Lerp(0, Mathf.Cos(Time.time * CurrentFrequency / 2f) * Amplitude, Smooth * Time.deltaTime);
+        transform.position = pos;
+    }
+
+    private void StopHeadBob()
+    {
+        if (transform.localPosition == startPos) return;
+
+        transform.localPosition = Vector3.Lerp(transform.localPosition, startPos, Time.deltaTime);
     }
 }

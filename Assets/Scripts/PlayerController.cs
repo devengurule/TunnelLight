@@ -16,6 +16,11 @@ public class PlayerMovement : MonoBehaviour
     public float lookSpeed;
     public float lookXLimit;
     public bool canMove = true;
+
+    public int FOV;
+    public int FOVMax;
+    public float FOVDelta;
+
     private float xRotation;
     private float xSpeed;
     private float ySpeed;
@@ -31,6 +36,8 @@ public class PlayerMovement : MonoBehaviour
     }
     void Update()
     {
+        
+
 
         Vector3 forward = transform.TransformDirection(Vector3.forward);
         Vector3 right = transform.TransformDirection(Vector3.right);
@@ -105,6 +112,16 @@ public class PlayerMovement : MonoBehaviour
 
             cam.transform.localRotation = Quaternion.Euler(xRotation, 0, 0);
             transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSpeed, 0);
+        }
+
+
+        if (isRunning && (xSpeed != 0 || ySpeed != 0))
+        {
+            cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, FOVMax, FOVDelta);
+        }
+        else
+        {
+            cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, FOV, FOVDelta);
         }
     }
 }
