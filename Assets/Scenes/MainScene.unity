@@ -163,6 +163,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 3249676715197966537, guid: f29bbef649c84d3459dcff4a6a634a94, type: 3}
+      propertyPath: FOV
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 3249676715197966537, guid: f29bbef649c84d3459dcff4a6a634a94, type: 3}
+      propertyPath: FOVMax
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 3249676715197966537, guid: f29bbef649c84d3459dcff4a6a634a94, type: 3}
+      propertyPath: FOVDelta
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6366993700110613556, guid: f29bbef649c84d3459dcff4a6a634a94, type: 3}
+      propertyPath: RunAmplitude
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6366993700110613556, guid: f29bbef649c84d3459dcff4a6a634a94, type: 3}
+      propertyPath: RunFrequency
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 7709681179684830566, guid: f29bbef649c84d3459dcff4a6a634a94, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.84
@@ -239,7 +259,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 11.261157, y: -1.1195316, z: -8.665612}
-  m_LocalScale: {x: 42.301563, y: 1, z: 24.733124}
+  m_LocalScale: {x: 114.26921, y: 1, z: 136.79453}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 100204671}

@@ -1,14 +1,17 @@
 using System;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.UIElements;
 
 public class Headbob : MonoBehaviour
 {
     public float Amplitude;
+    public float RunAmplitude;
     public float Frequency;
     public float RunFrequency;
     public float Smooth;
     private float CurrentFrequency;
+    private float CurrentAmplitude;
     private Vector3 pos;
     private Vector3 startPos;
     private Vector3 startPosTest;
@@ -20,8 +23,18 @@ public class Headbob : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKey(KeyCode.LeftShift)) CurrentFrequency = RunFrequency;
-        else CurrentFrequency = Frequency;
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            StopHeadBob();
+            CurrentFrequency = RunFrequency;
+            CurrentAmplitude = RunAmplitude;
+        }
+        else
+        {
+            StopHeadBob();
+            CurrentFrequency = Frequency;
+            CurrentAmplitude = Amplitude;
+        }
 
         if (Input.GetButton("Horizontal") || Input.GetButton("Vertical")) HeadBob();
         else StopHeadBob();
@@ -33,8 +46,8 @@ public class Headbob : MonoBehaviour
 
         pos = transform.position;
 
-        pos.y += Mathf.Lerp(0, Mathf.Sin(Time.time * CurrentFrequency) * Amplitude, Smooth * Time.deltaTime);
-        pos.x += Mathf.Lerp(0, Mathf.Cos(Time.time * CurrentFrequency / 2f) * Amplitude, Smooth * Time.deltaTime);
+        pos.y += Mathf.Lerp(0, Mathf.Sin(Time.time * CurrentFrequency) * CurrentAmplitude, Smooth * Time.deltaTime);
+        pos.x += Mathf.Lerp(0, Mathf.Cos(Time.time * CurrentFrequency / 2f) * CurrentAmplitude, Smooth * Time.deltaTime);
         transform.position = pos;
     }
 
