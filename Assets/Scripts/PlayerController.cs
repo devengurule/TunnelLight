@@ -6,6 +6,9 @@ using UnityEngine.EventSystems;
 public class PlayerMovement : MonoBehaviour
 
 {
+
+
+
     public Camera cam;
     public float gravity;
     public float walkSpeed;
@@ -27,6 +30,8 @@ public class PlayerMovement : MonoBehaviour
     private float moveSpeed;
     private Vector3 move = Vector3.zero;
     private CharacterController controller;
+    private bool colliding = false;
+
 
     void Start()
     {
@@ -118,5 +123,16 @@ public class PlayerMovement : MonoBehaviour
         {
             cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, FOV, FOVDelta);
         }
+    }
+
+    public bool isColliding()
+    {
+        return colliding;
+    }
+
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        Debug.Log("Colliding");
     }
 }
