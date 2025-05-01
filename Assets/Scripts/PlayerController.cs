@@ -6,9 +6,6 @@ using UnityEngine.EventSystems;
 public class PlayerMovement : MonoBehaviour
 
 {
-
-
-
     public Camera cam;
     public float gravity;
     public float walkSpeed;
