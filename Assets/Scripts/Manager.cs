@@ -6,16 +6,14 @@ using NUnit.Framework.Constraints;
 public class Manager : MonoBehaviour
 {
     public List<string> SceneNames;
-
     public GameObject player;
-
-    public bool playable;
-
-    public bool introPlaying = true;
-
+    public GameObject train;
+    public bool playable = false;
+    public bool introPlaying = false;
+    public bool trainStopPlaying = false;
     private Vector3 startPos;
     private string startScene;
-
+    public bool spawnTrain = false;
     private void Start()
     {
         //startScene = "TrainStop";
@@ -35,10 +33,32 @@ public class Manager : MonoBehaviour
 
         startPos = player.transform.position;
 
+        if (SceneManager.GetActiveScene().name == "Intro")
+        {
+            introPlaying = true;
+            playable = false;
+        }
+        else if (SceneManager.GetActiveScene().name == "TrainStop")
+        {
+            trainStopPlaying = true;
+            playable = true;
+        }
+
+        if (trainStopPlaying)
+        {
+            SpawnTrain(new Vector3(0,0,0.1f), false, new Vector3(6.88f, 47.7f, -45.23889f));
+        }
     }
 
     private void Update()
     {
+        if (spawnTrain)
+        {
+            spawnTrain = false;
+
+            SpawnTrain(new Vector3(0, 0, 1f), false, new Vector3(22.88f, 25.44f, -178.79f));
+        }
+
         //if (player.GetComponent<TriggerCollider>().isTriggered())
         //{
         //    if (startScene == "TrainStop")
@@ -203,5 +223,14 @@ public class Manager : MonoBehaviour
     {
         Application.Quit();
         Debug.Log("Quitting...");
+    }
+
+
+
+    void SpawnTrain(Vector3 move, bool direction, Vector3 spawnPos)
+    {
+        GameObject trainObject = Instantiate(train, spawnPos, Quaternion.Euler(0,0,0));
+        TrainMoving trainScript = trainObject.GetComponent<TrainMoving>();
+        trainScript.Initialize(player, direction, move);
     }
 }

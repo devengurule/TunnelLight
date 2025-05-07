@@ -770,11 +770,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79ac6b76279621e44afde3aaccb92e81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  manager: {fileID: 0}
-  player: {fileID: 0}
+  player: {fileID: 79338867274256301, guid: f29bbef649c84d3459dcff4a6a634a94, type: 3}
   direction: 0
   move: {x: 0, y: 0, z: 0}
-  startpos: {x: 0, y: 0, z: 0}
 --- !u!1 &1701156395042788078
 GameObject:
   m_ObjectHideFlags: 0
