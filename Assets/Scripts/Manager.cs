@@ -7,28 +7,31 @@ public class Manager : MonoBehaviour
 {
     public List<string> SceneNames;
 
-    [SerializeField]
-    GameObject player;
+    public GameObject player;
+
+    public bool playable;
+
+    public bool introPlaying = true;
 
     private Vector3 startPos;
     private string startScene;
 
     private void Start()
     {
-        startScene = "TrainStop";
+        //startScene = "TrainStop";
 
-        foreach(string i in SceneNames)
-        {
-            if(i != "ManagerScene")
-            {
-                if (!SceneManager.GetSceneByName(i).isLoaded)
-                {
-                    SceneManager.LoadSceneAsync(i, LoadSceneMode.Additive);
-                }
-            }
-        }
+        //foreach(string i in SceneNames)
+        //{
+        //    if(i != "ManagerScene")
+        //    {
+        //        if (!SceneManager.GetSceneByName(i).isLoaded)
+        //        {
+        //            SceneManager.LoadSceneAsync(i, LoadSceneMode.Additive);
+        //        }
+        //    }
+        //}
 
-        SwitchScene("TrainStop", 3.21f, 26.19f, -2.384f, 90);
+        //SwitchScene("TrainStop", 3.21f, 26.19f, -2.384f, 90);
 
         startPos = player.transform.position;
 
@@ -36,58 +39,58 @@ public class Manager : MonoBehaviour
 
     private void Update()
     {
-        if (player.GetComponent<TriggerCollider>().isTriggered())
-        {
-            if (startScene == "TrainStop")
-            {
-                //Were at the trainstop
-                //Going to tunnel
+        //if (player.GetComponent<TriggerCollider>().isTriggered())
+        //{
+        //    if (startScene == "TrainStop")
+        //    {
+        //        //Were at the trainstop
+        //        //Going to tunnel
 
-                SwitchScene("TheTunnel", 0.98f, 10.6f, -18.44f, 180);
-                startPos = player.transform.position;
-                startScene = "TheTunnel";
+        //        SwitchScene("TheTunnel", 0.98f, 10.6f, -18.44f, 180);
+        //        startPos = player.transform.position;
+        //        startScene = "TheTunnel";
 
-            }
-            else if (startScene == "TheTunnel")
-            {
-                //Were at the tunnel
-                //Going to trainstop
+        //    }
+        //    else if (startScene == "TheTunnel")
+        //    {
+        //        //Were at the tunnel
+        //        //Going to trainstop
 
-                SwitchScene("TrainStop", 3.21f, 26.19f, -2.384f, 90);
-                startPos = player.transform.position;
-                startScene = "TrainStop";
-            }
-        }
+        //        SwitchScene("TrainStop", 3.21f, 26.19f, -2.384f, 90);
+        //        startPos = player.transform.position;
+        //        startScene = "TrainStop";
+        //    }
+        //}
 
 
-        // Resets to the train stop scene
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            SwitchScene(startScene, startPos.x, startPos.y, startPos.z, 90);
-        }
-        // Goes to the tunnel and if at the tunnel then back to the trainstop
-        else if (Input.GetKeyDown(KeyCode.T))
-        {
-            if (startScene == "TrainStop")
-            {
-                //Were at the trainstop
-                //Going to tunnel
+        //// Resets to the train stop scene
+        //if (Input.GetKeyDown(KeyCode.R))
+        //{
+        //    SwitchScene(startScene, startPos.x, startPos.y, startPos.z, 90);
+        //}
+        //// Goes to the tunnel and if at the tunnel then back to the trainstop
+        //else if (Input.GetKeyDown(KeyCode.T))
+        //{
+        //    if (startScene == "TrainStop")
+        //    {
+        //        //Were at the trainstop
+        //        //Going to tunnel
 
-                SwitchScene("TheTunnel", 0.98f, 10.6f, -18.44f, 180);
-                startPos = player.transform.position;
-                startScene = "TheTunnel";
+        //        SwitchScene("TheTunnel", 0.98f, 10.6f, -18.44f, 180);
+        //        startPos = player.transform.position;
+        //        startScene = "TheTunnel";
 
-            }
-            else if (startScene == "TheTunnel")
-            {
-                //Were at the tunnel
-                //Going to trainstop
+        //    }
+        //    else if (startScene == "TheTunnel")
+        //    {
+        //        //Were at the tunnel
+        //        //Going to trainstop
 
-                SwitchScene("TrainStop", 3.21f, 26.19f, -2.384f, 90);
-                startPos = player.transform.position;
-                startScene = "TrainStop";
-            }
-        }
+        //        SwitchScene("TrainStop", 3.21f, 26.19f, -2.384f, 90);
+        //        startPos = player.transform.position;
+        //        startScene = "TrainStop";
+        //    }
+        //}
     }
 
 
@@ -173,8 +176,6 @@ public class Manager : MonoBehaviour
     {
         this.startPos = startPos;
     }
-
-
     public void UnLoadAll()
     {
         for (int i = 0; i < SceneManager.sceneCount; i++)
@@ -192,5 +193,11 @@ public class Manager : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void quit()
+    {
+        Application.Quit();
+        Debug.Log("Quitting...");
     }
 }

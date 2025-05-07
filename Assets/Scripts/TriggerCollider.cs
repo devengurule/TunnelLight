@@ -2,19 +2,26 @@ using UnityEngine;
 
 public class TriggerCollider : MonoBehaviour
 {
-    private bool trigger;
+    public float teleportDistance;
+    private bool negative;
+    private Vector3 newPos;
+    private CharacterController controller;
 
-    public bool isTriggered()
+    private void Awake()
     {
-        return trigger;
+        controller = GetComponent<CharacterController>();
     }
 
-    private void OnControllerColliderHit(ControllerColliderHit hit)
+    private void OnTriggerEnter(Collider other)
     {
-        if(hit.gameObject.tag == "Trigger")
-        {
-            //Debug.Log("Colliding");
-            trigger = true;
-        }
+        newPos = transform.position;
+        if (other.gameObject.tag == "TriggerPos") { negative = false; }
+        else if (other.gameObject.tag == "TriggerNeg") { negative = true; }
+
+        newPos.z = negative ? newPos.z - teleportDistance : newPos.z + teleportDistance;
+
+        controller.enabled = false;
+        transform.position = newPos;
+        controller.enabled = true;
     }
 }

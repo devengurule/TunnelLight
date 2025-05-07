@@ -5,6 +5,7 @@ using UnityEngine.UIElements;
 
 public class Headbob : MonoBehaviour
 {
+    public Manager manager;
     public float Amplitude;
     public float RunAmplitude;
     public float Frequency;
@@ -15,6 +16,7 @@ public class Headbob : MonoBehaviour
     private Vector3 pos;
     private Vector3 startPos;
     private Vector3 startPosTest;
+    
 
     void Start()
     {
@@ -35,8 +37,10 @@ public class Headbob : MonoBehaviour
             CurrentFrequency = Frequency;
             CurrentAmplitude = Amplitude;
         }
-
-        if (Input.GetButton("Horizontal") || Input.GetButton("Vertical")) HeadBob();
+        if (Input.GetButton("Horizontal") || Input.GetButton("Vertical"))
+        {
+            if (manager.playable) HeadBob();
+        }
         else StopHeadBob();
     }
 
@@ -48,6 +52,7 @@ public class Headbob : MonoBehaviour
 
         pos.y += Mathf.Lerp(0, Mathf.Sin(Time.time * CurrentFrequency) * CurrentAmplitude, Smooth * Time.deltaTime);
         pos.x += Mathf.Lerp(0, Mathf.Cos(Time.time * CurrentFrequency / 2f) * CurrentAmplitude, Smooth * Time.deltaTime);
+        
         transform.position = pos;
     }
 
