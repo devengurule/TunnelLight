@@ -9,7 +9,7 @@ public class LightFlicker : MonoBehaviour
     private Light lightObject;
     private float targetIntensity;
     private float smoothIntensity;
-
+    private bool disabled = false;
     void Start()
     {
         lightObject = GetComponent<Light>();
@@ -20,17 +20,19 @@ public class LightFlicker : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.F) && gameObject.tag == "Flashlight")
         {
-            if(lightObject.enabled) lightObject.enabled = false;
-            else lightObject.enabled = true;
+            if (!disabled) disabled = true;
+            else disabled = false;
         }
 
 
         if (Mathf.Abs(smoothIntensity - targetIntensity) < 0.01f)
         {
-            targetIntensity = intensity * Random.Range(min, max);
+            if(!disabled) targetIntensity = intensity * Random.Range(min, max);
+            else targetIntensity = 0f;
         }
 
         smoothIntensity = Mathf.Lerp(smoothIntensity, targetIntensity, Time.deltaTime * smooth);
+        if(smoothIntensity < 0) smoothIntensity = 0;
         lightObject.intensity = smoothIntensity;
     }
 }
