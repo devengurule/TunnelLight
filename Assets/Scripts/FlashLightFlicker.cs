@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class FlashLightFlicker : MonoBehaviour
 {
+    public Manager manager;
     public float max = 0.1f;
     public float min = 1f;
     public float smooth = 0.1f;
@@ -18,7 +19,7 @@ public class FlashLightFlicker : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F) && gameObject.tag == "Flashlight")
+        if (Input.GetKeyDown(KeyCode.F) && gameObject.tag == "Flashlight" && manager.playable)
         {
             if (!disabled) disabled = true;
             else disabled = false;

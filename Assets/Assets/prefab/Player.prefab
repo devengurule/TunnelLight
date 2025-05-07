@@ -102,18 +102,18 @@ MonoBehaviour:
   manager: {fileID: 0}
   cam: {fileID: 6529748341778993374}
   gravity: 50
-  walkSpeed: 3
-  runSpeed: 7
+  walkSpeed: 2
+  runSpeed: 4
   jump: 10
-  canJump: 1
+  canJump: 0
   speedAccel: 0.1
   lookSpeed: 2
   lookXLimit: 45
   speed: 0
   canMove: 1
-  FOV: 0
-  FOVMax: 0
-  FOVDelta: 0
+  FOV: 70
+  FOVMax: 73
+  FOVDelta: 0.1
 --- !u!114 &6538564473369678224
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -126,7 +126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be5c8ac53e1c43945b6f27382d42a408, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  teleportDistance: 0
+  teleportDistance: 15.3
 --- !u!114 &7122313019965150345
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -93,6 +93,10 @@ public class Manager : MonoBehaviour
         //}
     }
 
+    public void play()
+    {
+        SceneManager.LoadScene(1);
+    }
 
     /// <summary>
     /// Enables or Disables a target scene
