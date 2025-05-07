@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 3885567407773292190}
   - component: {fileID: 8441339239907357078}
   - component: {fileID: 5832852041342424545}
-  - component: {fileID: 4782131193150509632}
+  - component: {fileID: 4599824190627695681}
   m_Layer: 0
   m_Name: Spot Light
   m_TagString: Flashlight
@@ -154,7 +154,7 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
---- !u!114 &4782131193150509632
+--- !u!114 &4599824190627695681
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -163,10 +163,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 6581348944240429005}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9de2c7de3949c1748ab654e8a3c939b6, type: 3}
+  m_Script: {fileID: 11500000, guid: a3ab71b59a1c1a044ae5e6d2a62010c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  max: 0.9
+  max: 0.1
   min: 1
   smooth: 0.1
   intensity: 150

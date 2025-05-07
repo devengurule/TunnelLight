@@ -155,10 +155,10 @@ Light:
   m_Enabled: 1
   serializedVersion: 11
   m_Type: 0
-  m_Color: {r: 1, g: 0.94395953, b: 0.7028302, a: 1}
-  m_Intensity: 154.2
+  m_Color: {r: 1, g: 0.97949356, b: 0.8886792, a: 1}
+  m_Intensity: 40
   m_Range: 7.491101
-  m_SpotAngle: 86.59488
+  m_SpotAngle: 102.85119
   m_InnerSpotAngle: 37.774403
   m_CookieSize: 10
   m_Shadows:
@@ -247,4 +247,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   max: 0.9
   min: 1
-  intensity: 150
+  smooth: 35
+  intensity: 30
