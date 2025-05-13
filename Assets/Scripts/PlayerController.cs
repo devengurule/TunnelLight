@@ -2,6 +2,7 @@ using Mono.Cecil.Cil;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -41,6 +42,8 @@ public class PlayerMovement : MonoBehaviour
     AnimatorStateInfo stateInfo;
 
 
+    private Vector3 newPos;
+
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -51,6 +54,10 @@ public class PlayerMovement : MonoBehaviour
     }
     void Update()
     {
+
+        
+
+
         Cursor.lockState = (manager.introPlaying) ? CursorLockMode.Confined : CursorLockMode.Locked;
         Cursor.visible = (manager.introPlaying) ? true : false;
 
@@ -148,6 +155,29 @@ public class PlayerMovement : MonoBehaviour
                 controller.Move(pos * Time.deltaTime);
             }
             else if (controller.enabled) controller.Move(Vector3.zero);
+        }
+
+
+
+
+
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            newPos = transform.position;
+            newPos.x = newPos.x + 20f;
+
+            controller.enabled = false;
+            transform.position = newPos;
+            controller.enabled = true;
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            newPos = transform.position;
+            newPos.x = newPos.x - 20f;
+
+            controller.enabled = false;
+            transform.position = newPos;
+            controller.enabled = true;
         }
     }
 

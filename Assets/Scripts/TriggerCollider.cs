@@ -3,7 +3,8 @@ using UnityEngine;
 public class TriggerCollider : MonoBehaviour
 {
     private Manager manager;
-    public float teleportDistance;
+    public float teleportDistancePos;
+    public float teleportDistanceNeg;
     private bool negative;
     private Vector3 newPos;
     private CharacterController controller;
@@ -29,7 +30,7 @@ public class TriggerCollider : MonoBehaviour
             if (other.gameObject.tag == "TriggerPos") { negative = false; }
             else if (other.gameObject.tag == "TriggerNeg") { negative = true; }
 
-            newPos.z = negative ? newPos.z - teleportDistance : newPos.z + teleportDistance;
+            newPos.z = negative ? newPos.z - teleportDistanceNeg : newPos.z + teleportDistancePos;
 
             controller.enabled = false;
             transform.position = newPos;

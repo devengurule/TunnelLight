@@ -8,6 +8,7 @@ TagManager:
   - Trigger
   - Flashlight
   - TriggerPos
+  - TriggerNeg
   - TrainTrigger
   layers:
   - Default
