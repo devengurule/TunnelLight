@@ -2,6 +2,8 @@ using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using NUnit.Framework.Constraints;
+using UnityEngine.Rendering;
+using System.Collections;
 
 public class Manager : MonoBehaviour
 {
@@ -13,10 +15,15 @@ public class Manager : MonoBehaviour
     public bool introPlaying;
     public bool trainStopPlaying;
     public bool spawnTrain;
-
+    private bool change;
+    private Volume volume;
+    public float fadeDuration = 1f;
 
     private void Start()
     {
+        volume = GetComponent<Volume>();
+        volume.weight = 1f;
+
         if (SceneManager.GetActiveScene().name == "Intro")
         {
             trainStopPlaying = false;
@@ -31,6 +38,8 @@ public class Manager : MonoBehaviour
             playable = false;
             spawnTrain = false;
         }
+
+        StartCoroutine(FadeOut());
     }
 
     private void Update()
@@ -48,12 +57,42 @@ public class Manager : MonoBehaviour
     }
     public void play()
     {
-        SceneManager.LoadScene(1);
+        StartCoroutine(FadeIn());
     }
     public void quit()
     {
         Application.Quit();
         Debug.Log("Quitting...");
+    }
+
+    private IEnumerator FadeIn()
+    {
+        float elapsed = 0f;
+        float startWeight = volume.weight;
+
+        while (elapsed < fadeDuration)
+        {
+            elapsed += Time.deltaTime;
+            volume.weight = Mathf.Lerp(startWeight, 1f, elapsed / fadeDuration);
+            yield return null;
+        }
+
+        volume.weight = 0f;
+        SceneManager.LoadScene(1);
+    }
+    private IEnumerator FadeOut()
+    {
+        float elapsed = 0f;
+        float startWeight = volume.weight;
+
+        while (elapsed < fadeDuration)
+        {
+            elapsed += Time.deltaTime;
+            volume.weight = Mathf.Lerp(startWeight, 0f, elapsed / fadeDuration);
+            yield return null;
+        }
+
+        volume.weight = 0f;
     }
 
     void SpawnTrain(Vector3 move, bool direction, Vector3 spawnPos)

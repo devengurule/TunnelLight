@@ -164,6 +164,8 @@ public class PlayerMovement : MonoBehaviour
                 transform.SetParent(null, true);
                 Destroy(parent);
                 manager.playable = true;
+                GameObject child = transform.Find("Point Light").gameObject;
+                child.SetActive(true);
             }
         }
     }
