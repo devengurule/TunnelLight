@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 2379304764244402297}
   - component: {fileID: 3249676715197966537}
   - component: {fileID: 6538564473369678224}
-  - component: {fileID: 7122313019965150345}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -127,19 +126,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   teleportDistance: 15.3
---- !u!114 &7122313019965150345
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 79338867274256301}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0eb67de6b5f905140a7607b6a546072d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 0
 --- !u!1 &2140318505590432378
 GameObject:
   m_ObjectHideFlags: 0
@@ -505,7 +491,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 863ab51fd4ea39e4589aabd936b0822e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  manager: {fileID: 0}
   Amplitude: 1
   RunAmplitude: 2
   Frequency: 10
@@ -537,13 +522,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4814674799315674227}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.72467744, z: -0, w: 0.6890882}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7709681179684830566}
-  m_LocalEulerAnglesHint: {x: 0, y: 92.884, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!33 &3758516751060830744
 MeshFilter:
   m_ObjectHideFlags: 0

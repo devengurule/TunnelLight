@@ -1,5 +1,8 @@
+using Mono.Cecil.Cil;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -34,12 +37,17 @@ public class PlayerMovement : MonoBehaviour
     private CharacterController controller;
     private bool colliding = false;
 
+    Animator animator;
+    AnimatorStateInfo stateInfo;
+
 
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         controller = GetComponent<CharacterController>();
+
+        if (transform.parent != null) animator = transform.parent.GetComponent<Animator>();
     }
     void Update()
     {
@@ -50,13 +58,7 @@ public class PlayerMovement : MonoBehaviour
         Vector3 right = transform.TransformDirection(Vector3.right);
 
         bool isRunning = Input.GetKey(KeyCode.LeftShift);
-
-        if (manager.introPlaying)
-        {
-            pos.z = speed;
-            controller.Move(pos * Time.deltaTime);
-        }
-
+        
         if (manager.playable)
         {
             if ((Input.GetButton("Horizontal") || Input.GetButton("Vertical")) && canMove)
@@ -140,7 +142,29 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            if(controller.enabled) controller.Move(Vector3.zero);
+            if (manager.introPlaying)
+            {
+                pos.z = speed;
+                controller.Move(pos * Time.deltaTime);
+            }
+            else if (controller.enabled) controller.Move(Vector3.zero);
+        }
+    }
+
+    void LateUpdate()
+    {
+        if (transform.parent != null)
+        {
+            AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+
+            if (stateInfo.normalizedTime >= 1f && transform.parent != null)
+            {
+                GameObject parent = transform.parent.gameObject;
+                animator.enabled = false;
+                transform.SetParent(null, true);
+                Destroy(parent);
+                manager.playable = true;
+            }
         }
     }
 

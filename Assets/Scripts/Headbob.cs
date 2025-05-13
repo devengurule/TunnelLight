@@ -5,7 +5,7 @@ using UnityEngine.UIElements;
 
 public class Headbob : MonoBehaviour
 {
-    public Manager manager;
+    private Manager manager;
     public float Amplitude;
     public float RunAmplitude;
     public float Frequency;
@@ -20,6 +20,10 @@ public class Headbob : MonoBehaviour
 
     void Start()
     {
+        GameObject parentObject = transform.parent.gameObject;
+        PlayerMovement playermovement = parentObject.GetComponent<PlayerMovement>();
+        manager = playermovement.manager;
+
         startPos = transform.localPosition;
     }
 

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class TriggerCollider : MonoBehaviour
 {
-    public Manager manager;
+    private Manager manager;
     public float teleportDistance;
     private bool negative;
     private Vector3 newPos;
@@ -10,6 +10,9 @@ public class TriggerCollider : MonoBehaviour
 
     private void Awake()
     {
+        PlayerMovement playermovement = GetComponent<PlayerMovement>();
+        manager = playermovement.manager;
+
         controller = GetComponent<CharacterController>();
     }
 

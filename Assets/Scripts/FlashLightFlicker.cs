@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class FlashLightFlicker : MonoBehaviour
 {
-    public Manager manager;
+    private Manager manager;
     public float max = 0.1f;
     public float min = 1f;
     public float smooth = 0.1f;
@@ -13,6 +13,10 @@ public class FlashLightFlicker : MonoBehaviour
     private bool disabled = true;
     void Start()
     {
+        GameObject parentObject = transform.parent.parent.parent.parent.gameObject;
+        PlayerMovement playermovement = parentObject.GetComponent<PlayerMovement>();
+        manager = playermovement.manager;
+
         lightObject = GetComponent<Light>();
         targetIntensity = intensity;
         smoothIntensity = intensity;
